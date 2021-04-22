@@ -1,4 +1,4 @@
-import { cards } from 'utils/constants';
+import { cards, Card, cardErrorMessage } from 'utils/constants';
 
 const trimWhiteSpaces = (input: string): string => input.replaceAll(/\s/g, '');
 
@@ -30,14 +30,14 @@ export const isCreditCardValid = (code: string): boolean => {
 
 export const getCreditCardType = (code: string): string => {
   if (!isCreditCardValid(code)) {
-    return 'Invalid credit card!';
+    return cardErrorMessage.INVALID;
   }
 
   const digits = trimWhiteSpaces(code);
   const digitsLength = digits.length;
 
 
-  const card = cards.find((card) => {
+  const card = cards.find((card: Card) => {
     const isCodeLengthCorrect = card.length.some(length => length === digitsLength);
 
     if (!isCodeLengthCorrect) {
@@ -64,5 +64,5 @@ export const getCreditCardType = (code: string): string => {
     return (isValidStartingDigits || isValidStartingDigitsRange);
   });
 
-  return card?.name || 'Invalid credit card!';
+  return card?.name || cardErrorMessage.NOT_SUPPORTED;
 }

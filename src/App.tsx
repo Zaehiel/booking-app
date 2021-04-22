@@ -1,23 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import 'normalize.css';
 import './App.css';
+import Duration from 'pages/duration/Duration';
+import Rooms from 'pages/rooms/Rooms';
+import Payment from 'pages/payment/Payment';
+import Success from 'pages/success/Success';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import { StoreProvider } from 'store/Store';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
- 
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreProvider>
+      <Router>
+        <div className="app">
+          <Switch>
+            <Route exact path="/">
+              <Duration />
+            </Route>
+            <Route path="/rooms">
+              <Rooms />
+            </Route>
+            <Route path="/payment">
+              <Payment />
+            </Route>
+            <Route path="/confirmed">
+              <Success />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </StoreProvider>
   );
 }
 

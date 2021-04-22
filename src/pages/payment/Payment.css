@@ -1,0 +1,16 @@
+.payment__info {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+.payment__info label {
+  padding: 0.25rem 0;
+  font-weight: 500;
+}
+
+.default-input {
+  border: 1px solid #000;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
